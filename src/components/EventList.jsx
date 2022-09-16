@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import EventCard from "./EventCard";
 const EventList = () => {
   const [events, setEvents] = useState([]);
 
@@ -21,7 +22,7 @@ const EventList = () => {
     <div>
       {events.map((event) => (
         <div>
-          <p>{event.title}</p>
+          <EventCard event={event}></EventCard>
         </div>
       ))}
     </div>
