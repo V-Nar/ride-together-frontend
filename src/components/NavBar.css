@@ -1,0 +1,11 @@
+.Navbar {
+    /* position: fixed; */
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+h1 {
+    font-size: 2rem;
+}

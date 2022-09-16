@@ -22,7 +22,7 @@ const EventList = () => {
     <div>
       {events.map((event) => (
         <div>
-          <EventCard event={event}></EventCard>
+          <EventCard key={event._id} event={event}></EventCard>
         </div>
       ))}
     </div>
