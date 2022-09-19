@@ -1,11 +1,12 @@
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
   // To uncomment when token is needed
-  // const { setToken } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -19,7 +20,8 @@ const LoginPage = () => {
       .then((response) => {
         const jwt = response.data.token;
         // To uncomment when token is needed
-        // setToken(jwt);
+        setToken(jwt);
+        console.log(jwt);
         navigate("/");
       })
       .catch((error) => {
