@@ -6,7 +6,7 @@ const EventList = () => {
 
   useEffect(() => {
     axios
-      .get("https://ride-together.herokuapp.com/api/event")
+      .get("https://ride-together.herokuapp.com/api/event/")
       .then((response) => {
         setEvents(response.data.cityEvents);
       })
@@ -18,6 +18,13 @@ const EventList = () => {
   if (!events.length) {
     return <div className="loading">Loading...</div>;
   }
+  // const filteredEvent = events.filter((x) => {
+  //   if (input === "") {
+  //     return x;
+  //   } else {
+  //     return x.name.toLowerCase().includes(input);
+  //   }
+  // });
   return (
     <div>
       {events.map((event) => (
