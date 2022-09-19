@@ -6,7 +6,7 @@ const EventList = () => {
 
   useEffect(() => {
     axios
-      .get("https://ride-together.herokuapp.com/api/event")
+      .get("https://ride-together.herokuapp.com/api/event/")
       .then((response) => {
         setEvents(response.data.cityEvents);
       })
