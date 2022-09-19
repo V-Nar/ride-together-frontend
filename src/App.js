@@ -1,16 +1,17 @@
-import "./App.css";
-import EventList from "./components/EventList";
-import NavBarMUI from "./components/NavBarMUI";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/LoginPage";
+import "./App.css"
+import EventList from "./components/EventList"
+import { Route, Routes } from "react-router-dom"
+import LoginPage from "./pages/LoginPage"
+import Layout from "./pages/Layout"
 
 function App() {
   return (
     <div className="App">
-      <NavBarMUI />
       <Routes>
-        <Route path="/" element={<EventList />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<EventList />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
       </Routes>
     </div>
   );
