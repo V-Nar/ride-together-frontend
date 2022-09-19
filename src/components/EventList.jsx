@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import EventCard from "./EventCard";
+import { AuthContext } from "../contexts/AuthContext";
 const EventList = () => {
   const [events, setEvents] = useState([]);
-
+  const { user } = useContext(AuthContext);
+  console.log(user);
   useEffect(() => {
     axios
-      .get("https://ride-together.herokuapp.com/api/event/")
+      .get("https://ride-together.herokuapp.com/api/event", {
+        withCredentials: true,
+      })
       .then((response) => {
         setEvents(response.data.cityEvents);
       })

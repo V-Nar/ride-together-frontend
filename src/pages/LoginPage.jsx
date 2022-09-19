@@ -5,8 +5,10 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  // To uncomment when token is needed
-  const { setToken } = useContext(AuthContext);
+  const { user, setToken } = useContext(AuthContext);
+  const config = {
+    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+  };
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -14,14 +16,15 @@ const LoginPage = () => {
   const [errors, setErrors] = useState(false);
   const handleSubmit = (event) => {
     event.preventDefault();
-
     axios
-      .post("https://ride-together.herokuapp.com/api/auth/login", formData)
+      .post(
+        "https://ride-together.herokuapp.com/api/auth/login",
+        formData,
+        config
+      )
       .then((response) => {
-        const jwt = response.data.token;
-        // To uncomment when token is needed
+        const jwt = response.data;
         setToken(jwt);
-        console.log(jwt);
         navigate("/");
       })
       .catch((error) => {
