@@ -16,6 +16,7 @@ const AuthContextWrapper = ({ children }) => {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
+      setUser(null)
     }
   };
 
@@ -59,6 +60,7 @@ const AuthContextWrapper = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("AUTH_TOKEN");
     setToken("");
+    checkLogin()
   };
 
   return (
