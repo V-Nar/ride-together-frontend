@@ -11,7 +11,7 @@ const NavBarMUI = () => {
     <AppBar>
       <Toolbar style={{justifyContent: "space-between"}}>
         <BurgerMenu />
-        <Typography style={{flexWrap: 'wrap'}} >RIDE TOGETHER</Typography>
+        <Typography style={{fontWeight:'bold'}} >RIDE TOGETHER</Typography>
         <div style={
           {display:'flex',
            flexWrap:'nowrap',
