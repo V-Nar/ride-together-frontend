@@ -51,6 +51,7 @@ const ProfilePage = () => {
       });
   };
   return (
+
     <div style={{ marginTop: "4.5rem" }}>
       {!edit ? (
         <div>
