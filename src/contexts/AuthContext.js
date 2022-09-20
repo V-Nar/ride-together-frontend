@@ -42,6 +42,8 @@ const AuthContextWrapper = ({ children }) => {
         })
         .catch((error) => {
           console.log(error);
+          setIsLoggedIn(false)
+          setUser(null)
         });
     }
   }, [token]);

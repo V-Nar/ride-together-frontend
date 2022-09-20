@@ -7,15 +7,14 @@ import ProfilePage from "./pages/ProfilePage";
 import CreateEvent from "./pages/CreateEvent";
 import SignUp from "./pages/SignUp";
 import Event from "./pages/Event";
-import UpdateEvent from "./pages/UpdateEvent";
+import About from "./pages/About";
 
 
 function App() {
   return (
     <div className="App">
       <Routes>
-
-      <Route element={<Layout />}>
+        <Route element={<Layout />}>
           <Route path="/" element={<EventList />} />
           <Route path="signup" element={<SignUp/>} />
           <Route path="login" element={<LoginPage />} />
@@ -24,9 +23,8 @@ function App() {
           <Route path="event/:id" element={<Event />} />
           <Route path="my-events" element={<EventList />} />
           <Route path="my-attendies" element={<EventList />} />
+          <Route path="about" element={<About />} />
         </Route>
-
-
       </Routes>
     </div>
   );

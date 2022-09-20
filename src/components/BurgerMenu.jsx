@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 import IconButton from '@mui/material/IconButton'
 
 const BurgerMenu = () => {
-  const { isLoggedIn, logout } = useContext(AuthContext)
+  const { isLoggedIn } = useContext(AuthContext)
  
   const [anchorEl, setAnchorEl] = useState(null)
   const open = Boolean(anchorEl);
@@ -50,8 +50,7 @@ const BurgerMenu = () => {
       </div>
       :<div>
         <MenuItem onClick={handleClose}><Link to='/' style={{textDecoration: 'none'}}>Home</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to='/my-attendies' style={{textDecoration: 'none'}}>My Attendies</Link></MenuItem>
-        <MenuItem onClick={handleClose}><Link to='/my-events' style={{textDecoration: 'none'}}>My Events</Link></MenuItem>
+        <MenuItem onClick={handleClose}><Link to='/new' style={{textDecoration: 'none'}}>Create an Event</Link></MenuItem>
         <MenuItem onClick={handleClose}><Link to='/about' style={{textDecoration: 'none'}}>About</Link></MenuItem>
       </div>
       }

@@ -2,16 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import EventCard from "./EventCard";
 import { AuthContext } from "../contexts/AuthContext";
+
 const EventList = () => {
   const [events, setEvents] = useState([]);
-  const { user } = useContext(AuthContext);
-  console.log(user);
+  const { isLoggedIn } = useContext(AuthContext);
+  
   useEffect(() => {
     axios
-      .get("https://ride-together.herokuapp.com/api/event", {
+      .get("http://localhost:5005/api/event", {
         withCredentials: true,
       })
       .then((response) => {
+        console.log(response.data);
         setEvents(response.data.cityEvents);
       })
       .catch((error) => {
@@ -19,23 +21,29 @@ const EventList = () => {
       });
   }, []);
 
-  if (!events.length) {
-    return <div className="loading">Loading...</div>;
-  }
-  // const filteredEvent = events.filter((x) => {
-  //   if (input === "") {
-  //     return x;
-  //   } else {
-  //     return x.name.toLowerCase().includes(input);
-  //   }
-  // });
+    if (!events.length) {
+      return <div className="loading">Loading...</div>;
+    }
+    
+    const upcomingEvents = events.filter(event => event.isFinished === false)
+    // console.log(upcomingEvents);
+    const pastEvents = events.filter(event => event.isFinished === true)
+    // console.log(pastEvents)
+
   return (
-    <div style={{marginTop:"4.5rem"}}>
-      {events.map((event) => (
-        <div key={event._id}>
-          <EventCard event={event}></EventCard>
-        </div>
-      ))}
+    <div style={{ marginTop: "4.5rem" }}>
+      {upcomingEvents.length ?
+        upcomingEvents.map((event) =>
+          <div key={event._id}>
+            <EventCard event={event}></EventCard>
+          </div>
+        )
+        : pastEvents.map((event) =>
+          <div key={event._id}>
+            <EventCard event={event}></EventCard>
+          </div>
+        )
+      }
     </div>
   );
 };

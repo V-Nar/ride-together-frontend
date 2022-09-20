@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const { user, setToken } = useContext(AuthContext);
+  const { setToken } = useContext(AuthContext);
   const config = {
     headers: { Authorization: "Bearer " + localStorage.getItem("token") },
   };
