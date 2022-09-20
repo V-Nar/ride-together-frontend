@@ -1,24 +1,30 @@
-import React from "react";
-import "./NavBar.css";
-import { Link } from "react-router-dom";
-import BurgerMenu from "./BurgerMenu";
-import SearchBar from "./SearchBar";
+import React from 'react'
+import BurgerMenu from './BurgerMenu'
+import Typography from '@mui/material/Typography'
+import SearchBar from './SearchBar'
+import Toolbar from '@mui/material/Toolbar'
+import AppBar from '@mui/material/AppBar'
+import ProfileIcon from './ProfileIcon'
 
-const Navbar = () => {
-  const pull_data = (data) => {
-    console.log(data);
-  };
+const NavBar = () => {
   return (
-    <div className="Navbar">
-      <BurgerMenu />
-      <h1>
-        <Link to="/">Ride Together</Link>
-      </h1>
-      <SearchBar func={pull_data} />
-      {/* <LoggedStatus /> */}
-      <Link to="/login">Login</Link>
-    </div>
-  );
-};
+    <AppBar>
+      <Toolbar style={{justifyContent: "space-between"}}>
+        <BurgerMenu />
+        <Typography style={{fontWeight:'bold'}} >RIDE TOGETHER</Typography>
+        <div style={
+          {display:'flex',
+           flexWrap:'nowrap',
+           justifyContent:'space-between',
+           alignItems: 'center',
+           gap:'1rem'
+          }}>
+          <SearchBar />
+          <ProfileIcon />
+        </div>
+      </Toolbar>
+   </AppBar>
+  )
+}
 
-export default Navbar;
+export default NavBar
