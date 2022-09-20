@@ -48,7 +48,7 @@ const ProfilePage = () => {
       });
   };
   return (
-    <>
+    <div style={{marginTop: '4.5rem'}}>
       {!edit ? (
         <div>
           <img src={`${user?.image}`} alt="user profile picture" />
@@ -104,7 +104,7 @@ const ProfilePage = () => {
           <input type="submit" value="Enregistrer les modifications" />
         </form>
       )}
-    </>
+    </div>
   );
 };
 
