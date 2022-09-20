@@ -37,12 +37,7 @@ const AuthContextWrapper = ({ children }) => {
           withCredentials: true,
         })
         .then((res) => {
-          setUser({
-            image: res.data.user.image,
-            username: res.data.user.username,
-            level: res.data.user.level,
-            id: res.data.user._id,
-          });
+          setUser(res.data.user);
           setIsLoggedIn(true);
         })
         .catch((error) => {
@@ -70,6 +65,7 @@ const AuthContextWrapper = ({ children }) => {
         isLoggedIn,
         token,
         user,
+        setUser,
         setToken: updateToken,
         logout,
       }}
