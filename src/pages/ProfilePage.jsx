@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
@@ -110,14 +109,3 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
-=======
-import React from 'react'
-
-const ProfilePage = () => {
-  return (
-    <div>ProfilePage</div>
-  )
-}
-
-export default ProfilePage
->>>>>>> main
