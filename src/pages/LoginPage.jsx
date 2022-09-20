@@ -35,7 +35,7 @@ const LoginPage = () => {
   };
 
   return (
-    <>
+    <div style={{marginTop:'4.5rem'}}>
       <form onSubmit={handleSubmit}>
         <label>username</label>
         <input
@@ -68,7 +68,7 @@ const LoginPage = () => {
         <input type="submit" value="Se connecter" />
       </form>
       {errors && <h3 className="error"> {"Wrong username or password"} </h3>}
-    </>
+    </div>
   );
 };
 

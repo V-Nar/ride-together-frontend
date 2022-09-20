@@ -30,7 +30,7 @@ const EventList = () => {
   //   }
   // });
   return (
-    <div>
+    <div style={{marginTop:"4.5rem"}}>
       {events.map((event) => (
         <div key={event._id}>
           <EventCard event={event}></EventCard>
