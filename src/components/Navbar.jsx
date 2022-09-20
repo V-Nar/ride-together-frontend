@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar'
 import AppBar from '@mui/material/AppBar'
 import ProfileIcon from './ProfileIcon'
 
-const NavBarMUI = () => {
+const NavBar = () => {
   return (
     <AppBar>
       <Toolbar style={{justifyContent: "space-between"}}>
@@ -27,4 +27,4 @@ const NavBarMUI = () => {
   )
 }
 
-export default NavBarMUI
+export default NavBar
