@@ -12,8 +12,9 @@ const ProfilePage = () => {
   };
 
   const [formData, setFormData] = useState({
+    profilePicture: "",
     password: "",
-    email: "hello",
+    email: "",
     level: "",
   });
 
@@ -36,10 +37,12 @@ const ProfilePage = () => {
       .patch("https://ride-together.herokuapp.com/api/user", formData, config)
       .then((response) => {
         setEdit(false);
+        console.log(response.data);
         setUser(response.data);
         setFormData({
           password: "",
           level: "",
+          email: "",
         });
       })
       .catch((error) => {
@@ -48,7 +51,8 @@ const ProfilePage = () => {
       });
   };
   return (
-    <div style={{marginTop: '4.5rem'}}>
+
+    <div style={{ marginTop: "4.5rem" }}>
       {!edit ? (
         <div>
           <img src={`${user?.image}`} alt="user profile picture" />
@@ -58,7 +62,21 @@ const ProfilePage = () => {
           <button onClick={handleClick}>Modification</button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form className="formClass" onSubmit={handleSubmit}>
+          <label>Profil Picture</label>
+          <input
+            type="file"
+            id="profilePicture"
+            name="profilePicture"
+            accept="image/png, image/jpeg"
+            value={formData.image}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                profilePicture: event.target.value,
+              })
+            }
+          ></input>
           <label>password</label>
           <input
             type="password"
@@ -87,7 +105,7 @@ const ProfilePage = () => {
             }
           />
           <label>level</label>
-          <input
+          {/* <input
             type="level"
             name="level"
             id="level"
@@ -98,7 +116,22 @@ const ProfilePage = () => {
                 level: event.target.value,
               })
             }
-          />
+          /> */}
+          <select
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                level: event.target.value,
+              })
+            }
+            id="level"
+            name="level"
+          >
+            <option value="Beginner">Beginner</option>
+            <option value="Medium">Medium</option>
+            <option value="Advanced">Advanced</option>
+            <option value="Expert">Expert</option>
+          </select>
           {/* Need to put it to the right place  */}
           {/* <button onClick={setEdit(false)}>Cancel</button> */}
           <input type="submit" value="Enregistrer les modifications" />
