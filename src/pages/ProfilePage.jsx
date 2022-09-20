@@ -51,7 +51,6 @@ const ProfilePage = () => {
       });
   };
   return (
-
     <div style={{ marginTop: "4.5rem" }}>
       {!edit ? (
         <div>
@@ -105,18 +104,6 @@ const ProfilePage = () => {
             }
           />
           <label>level</label>
-          {/* <input
-            type="level"
-            name="level"
-            id="level"
-            value={formData.level}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                level: event.target.value,
-              })
-            }
-          /> */}
           <select
             onChange={(event) =>
               setFormData({
