@@ -53,6 +53,8 @@ const ProfileIcon = () => {
                 onClose={handleClose}
             >
                 <MenuItem onClick={handleClose}><Link to='/profile' style={{textDecoration: 'none'}}>Profile</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to='/my-attendies' style={{textDecoration: 'none'}}>My Attendies</Link></MenuItem>
+                <MenuItem onClick={handleClose}><Link to='/my-events' style={{textDecoration: 'none'}}>My Events</Link></MenuItem>
                 <MenuItem ><Link to='/' onClick={logout} style={{textDecoration: 'none'}}>Log Out</Link></MenuItem>
             </Menu>
         </div>
