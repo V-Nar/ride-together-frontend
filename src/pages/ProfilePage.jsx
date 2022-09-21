@@ -1,7 +1,8 @@
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import SendIcon from "@mui/icons-material/Send";
 
 const ProfilePage = () => {
   const { user, isLoading, setUser } = useContext(AuthContext);
@@ -37,7 +38,6 @@ const ProfilePage = () => {
       .patch("https://ride-together.herokuapp.com/api/user", formData, config)
       .then((response) => {
         setEdit(false);
-        console.log(response.data);
         setUser(response.data);
         setFormData({
           password: "",
@@ -58,7 +58,13 @@ const ProfilePage = () => {
           <h3>Username: {user.username}</h3>
           <h3>Email : {user.email}</h3>
           <h3>level : {user.level}</h3>
-          <button onClick={handleClick}>Modification</button>
+          <Button
+            onClick={handleClick}
+            variant="contained"
+            endIcon={<SendIcon />}
+          >
+            Log in
+          </Button>
         </div>
       ) : (
         <form className="formClass" onSubmit={handleSubmit}>

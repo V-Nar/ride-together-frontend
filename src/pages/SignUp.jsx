@@ -2,6 +2,7 @@ import { PhotoCamera } from "@mui/icons-material";
 import { Button, IconButton, MenuItem, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import SendIcon from "@mui/icons-material/Send";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
@@ -43,8 +44,9 @@ const SignUp = () => {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        console.log("hello", error);
         setErrors(error);
+        setFormData({ username: "", email: "", password: "", level: "" });
       });
   };
   return (
@@ -158,12 +160,11 @@ const SignUp = () => {
           <input hidden accept="image/*" type="file" />
         </IconButton>
 
-        <Button type="submit" variant="contained" color="success">
+        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
           Sign up
-          {/* <input hidden type="submit" value="S'inscrire" /> */}
         </Button>
       </form>
-      {errors && <h3>{errors.response.data.message}</h3>}
+      {errors && <h3>{errors.message}</h3>}
     </div>
   );
 };

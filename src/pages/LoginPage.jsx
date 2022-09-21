@@ -1,8 +1,9 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import SendIcon from "@mui/icons-material/Send";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -38,20 +39,6 @@ const LoginPage = () => {
   return (
     <div>
       <form className="formClass" onSubmit={handleSubmit}>
-        {/* <label>username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          autoComplete="name"
-          value={formData.username}
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              username: event.target.value,
-            })
-          }
-        /> */}
         <TextField
           fullWidth
           required
@@ -83,21 +70,9 @@ const LoginPage = () => {
             })
           }
         />
-        {/* <label>password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          autoComplete="current-password"
-          value={formData.password}
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              password: event.target.value,
-            })
-          }
-        /> */}
-        <input type="submit" value="Se connecter" />
+        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+          Log in
+        </Button>
       </form>
       {errors && <h3 className="error"> {"Wrong username or password"} </h3>}
     </div>
