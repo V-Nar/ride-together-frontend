@@ -4,10 +4,12 @@ import NavBar from "../components/NavBar.jsx";
 
 const Layout = () => {
   return (
-    <div>
+    <>
       <NavBar />
-      <Outlet />
-    </div>
+      <main style={{ marginTop: "4.5rem" }}>
+        <Outlet />
+      </main>
+    </>
   );
 };
 
