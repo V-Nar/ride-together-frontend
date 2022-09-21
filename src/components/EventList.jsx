@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const EventList = () => {
   const [events, setEvents] = useState([]);
   const { isLoggedIn } = useContext(AuthContext);
-  
+
   useEffect(() => {
     axios
       .get("https://ride-together.herokuapp.com/api/event", {
@@ -20,29 +20,27 @@ const EventList = () => {
       });
   }, []);
 
-    if (!events.length) {
-      return <div className="loading">Loading...</div>;
-    }
-    
-    const upcomingEvents = events.filter(event => event.isFinished === false)
+  if (!events.length) {
+    return <div className="loading">Loading...</div>;
+  }
 
-    const pastEvents = events.filter(event => event.isFinished === true)
-   
+  const upcomingEvents = events.filter((event) => event.isFinished === false);
+
+  const pastEvents = events.filter((event) => event.isFinished === true);
 
   return (
     <div style={{ marginTop: "4.5rem" }}>
-      {upcomingEvents.length ?
-        upcomingEvents.map((event) =>
-          <div key={event._id}>
-            <EventCard event={event}></EventCard>
-          </div>
-        )
-        : pastEvents.map((event) =>
-          <div key={event._id}>
-            <EventCard event={event}></EventCard>
-          </div>
-        )
-      }
+      {upcomingEvents.length
+        ? upcomingEvents.map((event) => (
+            <div key={event._id}>
+              <EventCard event={event}></EventCard>
+            </div>
+          ))
+        : pastEvents.map((event) => (
+            <div key={event._id}>
+              <EventCard event={event}></EventCard>
+            </div>
+          ))}
     </div>
   );
 };

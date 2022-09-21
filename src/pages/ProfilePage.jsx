@@ -40,7 +40,7 @@ const ProfilePage = () => {
     },
   ];
   const [formData, setFormData] = useState({
-    profilePicture: "",
+    profilePic: "",
     password: "",
     email: "",
     level: "",
