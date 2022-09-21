@@ -1,15 +1,42 @@
+import { MenuItem, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  const [formData, setFormData] = useState([]);
+  const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const [errors, setErrors] = useState();
+
+  const level = [
+    {
+      value: "Beginner",
+      label: "Beginner",
+    },
+    {
+      value: "Medium",
+      label: "Medium",
+    },
+    {
+      value: "Advanced",
+      label: "Advanced",
+    },
+    {
+      value: "Expert",
+      label: "Expert",
+    },
+  ];
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    const form = new FormData();
+
+    Object.entries(formData).forEach(([key, value]) => {
+      form.append(key, value);
+    });
+
     axios
-      .post("https://ride-together.herokuapp.com/api/auth/signup", formData)
+      .post("https://ride-together.herokuapp.com/api/auth/signup", form)
       .then((response) => {
         console.log("succesfully submitted", response.data);
         navigate("/");
@@ -21,8 +48,7 @@ const SignUp = () => {
   };
   return (
     <div>
-      <form className="formClass" onSubmit={handleSubmit}>
-        <label>Username</label>
+      {/* <label>Username</label>
         <input
           type="text"
           name="username"
@@ -36,8 +62,8 @@ const SignUp = () => {
               username: event.target.value,
             })
           }
-        />
-        <label>Email</label>
+        /> */}
+      {/* <label>Email</label>
         <input
           type="text"
           name="email"
@@ -51,8 +77,8 @@ const SignUp = () => {
               email: event.target.value,
             })
           }
-        />
-        <label>Password</label>
+        /> */}
+      {/* <label>Password</label>
         <input
           type="password"
           name="password"
@@ -66,8 +92,56 @@ const SignUp = () => {
               password: event.target.value,
             })
           }
+        /> */}
+      <form className="formClass" onSubmit={handleSubmit}>
+        <TextField
+          fullWidth
+          required
+          id="username"
+          label="Username"
+          variant="outlined"
+          margin="normal"
+          value={formData.username}
+          onChange={(event) =>
+            setFormData({
+              ...formData,
+              username: event.target.value,
+            })
+          }
         />
-        <label>level</label>
+        <TextField
+          fullWidth
+          required
+          id="email"
+          label="email"
+          variant="outlined"
+          margin="normal"
+          value={formData.email}
+          onChange={(event) =>
+            setFormData({
+              ...formData,
+              email: event.target.value,
+            })
+          }
+        />
+        <TextField
+          fullWidth
+          required
+          id="password"
+          label="password"
+          variant="outlined"
+          type="password"
+          margin="normal"
+          value={formData.password}
+          onChange={(event) =>
+            setFormData({
+              ...formData,
+              password: event.target.value,
+            })
+          }
+        />
+
+        {/* <label>level</label>
         <select
           onChange={(event) =>
             setFormData({
@@ -82,18 +156,41 @@ const SignUp = () => {
           <option value="Medium">Medium</option>
           <option value="Advanced">Advanced</option>
           <option value="Expert">Expert</option>
-        </select>
+        </select> */}
+
+        <TextField
+          id="level"
+          select
+          label="Level"
+          fullWidth
+          margin="normal"
+          value={level.value}
+          onChange={(event) =>
+            setFormData({
+              ...formData,
+              level: event.target.value,
+            })
+          }
+          helperText="Please select the level you think you are !"
+        >
+          {level.map((option) => (
+            <MenuItem key={option.value} value={option.value}>
+              {option.label}
+            </MenuItem>
+          ))}
+        </TextField>
+
         <label>Profile Picture</label>
         <input
           type="file"
           id="profilePic"
           name="profilePic"
           accept="image/png, image/jpeg"
-          value={formData.image}
+          value={null}
           onChange={(event) =>
             setFormData({
               ...formData,
-              profilePic: event.target.value,
+              profilePic: event.target.files[0],
             })
           }
         ></input>
