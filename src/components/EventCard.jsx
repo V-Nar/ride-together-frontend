@@ -8,18 +8,12 @@ import {
   Typography,
 } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import { formatAs } from "../utils/formatDate";
 import "./EventCard.css";
 
 const EventCard = (props) => {
   return (
-    <div className="EventCard">
-      <p>{props.event.title}</p>
-      <p>Date: {formatAs.date(props.event.date)}</p>
-      <p>Lieu: {props.event.city}</p>
-      <p>Nombre de participants: {props.event.numOfAttendees}</p>
-    </div>
-
     //   <Card className="eventCard">
     //     <CardActionArea>
     //       <CardMedia
@@ -48,6 +42,15 @@ const EventCard = (props) => {
     //     </CardActions>
     //   </Card>
     // );
+
+    <Link to="/event" style={{ textDecoration: "none" }}>
+      <div className="EventCard">
+        <p>{props.event.title}</p>
+        <p>{formatAs.date(props.event.date)}</p>
+        <p>City: {props.event.city}</p>
+        <p>Attendees: {props.event.numOfAttendees}</p>
+      </div>
+    </Link>
   );
 };
 

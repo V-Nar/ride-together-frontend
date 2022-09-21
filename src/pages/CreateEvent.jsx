@@ -1,8 +1,9 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import SendIcon from "@mui/icons-material/Send";
 
 const CreateEvent = () => {
   const { isLoggedIn, isLoading, token} = useContext(AuthContext);
@@ -21,18 +22,17 @@ const CreateEvent = () => {
   }
 
   const config = {
-    headers: { Authorization: "Bearer " + localStorage.getItem('AUTH_TOKEN') },
+    headers: { Authorization: "Bearer " + localStorage.getItem(token) },
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     axios
       .post("https://ride-together.herokuapp.com/api/event/",
             formData,
             config)
       .then((response) => {
-        navigate("/my-events");
+        navigate("/profile");
       })
       .catch((error) => {
         console.log(error);
@@ -67,7 +67,7 @@ const CreateEvent = () => {
             fullWidth
             type="datetime-local"
             id="date"
-            min={Date()}
+            InputProps={{inputProps:{min: Date()}}}
             required
             value={formData.date}
             onChange={(e) =>
@@ -82,7 +82,7 @@ const CreateEvent = () => {
             variant="outlined"
             margin="normal"
             fullWidth
-            type="text"
+            type="text" 
             id="address"
             required
             value={formData.address}
@@ -109,7 +109,9 @@ const CreateEvent = () => {
             })
             }
         />
-        <input type="submit" value="Create your event" />
+        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+          Log in
+        </Button>
         </form>
         {errors && <h3>{errors.response.data.message}</h3>}
     </>
