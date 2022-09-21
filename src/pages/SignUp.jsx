@@ -120,21 +120,6 @@ const SignUp = () => {
           ))}
         </TextField>
 
-        {/* <label>Profile Picture</label>
-        <input
-          type="file"
-          id="profilePic"
-          name="profilePic"
-          accept="image/png, image/jpeg"
-          value={null}
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              profilePic: event.target.files[0],
-            })
-          }
-        ></input> */}
-
         <Button variant="contained" component="label">
           Upload Image
           <input
