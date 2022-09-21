@@ -5,11 +5,12 @@ import { Navigate, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 
 const CreateEvent = () => {
-  const { isLoggedIn, isLoading } = useContext(AuthContext);
+  const { isLoggedIn, isLoading, token} = useContext(AuthContext);
+  const [formData, setFormData] = useState({});
+  const [errors, setErrors] = useState();
 
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({});
 
   if (isLoading) {
     return <p>Loading!</p>;
@@ -20,88 +21,98 @@ const CreateEvent = () => {
   }
 
   const config = {
-    headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    headers: { Authorization: "Bearer " + localStorage.getItem('AUTH_TOKEN') },
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(formData);
     axios
-      .post("https://ride-together.herokuapp.com/api/event/", formData, config)
+      .post("https://ride-together.herokuapp.com/api/event/",
+            formData,
+            config)
       .then((response) => {
         navigate("/my-events");
+      })
+      .catch((error) => {
+        console.log(error);
+        setErrors(error);
       });
   };
 
   return (
-    <form onSubmit={handleSubmit} className="formClass">
-      <TextField
-        label="Title"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        type="text"
-        id="title"
-        required
-        value={formData.title}
-        onChange={(e) =>
-          setFormData({
-            ...formData,
-            username: e.target.value,
-          })
-        }
-      />
-      <TextField
-        InputLabelProps={{ shrink: true }}
-        label="Date"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        type="datetime-local"
-        id="date"
-        min={Date()}
-        required
-        value={formData.date}
-        onChange={(e) =>
-          setFormData({
-            ...formData,
-            username: e.target.value,
-          })
-        }
-      />
-      <TextField
-        label="Address"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        type="text"
-        id="address"
-        required
-        value={formData.address}
-        onChange={(e) =>
-          setFormData({
-            ...formData,
-            username: e.target.value,
-          })
-        }
-      />
-      <TextField
-        label="City"
-        variant="outlined"
-        margin="normal"
-        fullWidth
-        type="text"
-        id="city"
-        required
-        value={formData.city}
-        onChange={(e) =>
-          setFormData({
-            ...formData,
-            username: e.target.value,
-          })
-        }
-      />
-      <input type="submit" value="Create your event" />
-    </form>
+    <>
+        <form onSubmit={handleSubmit} className="formClass">
+        <TextField
+            label="Title"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            type="text"
+            id="title"
+            required
+            value={formData.title}
+            onChange={(e) =>
+            setFormData({
+                ...formData,
+                title: e.target.value,
+            })
+            }
+        />
+        <TextField
+            InputLabelProps={{ shrink: true }}
+            label="Date"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            type="datetime-local"
+            id="date"
+            min={Date()}
+            required
+            value={formData.date}
+            onChange={(e) =>
+            setFormData({
+                ...formData,
+                date: e.target.value,
+            })
+            }
+        />
+        <TextField
+            label="Address"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            type="text"
+            id="address"
+            required
+            value={formData.address}
+            onChange={(e) =>
+            setFormData({
+                ...formData,
+                address: e.target.value,
+            })
+            }
+        />
+        <TextField
+            label="City"
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            type="text"
+            id="city"
+            required
+            value={formData.city}
+            onChange={(e) =>
+            setFormData({
+                ...formData,
+                city: e.target.value,
+            })
+            }
+        />
+        <input type="submit" value="Create your event" />
+        </form>
+        {errors && <h3>{errors.response.data.message}</h3>}
+    </>
   );
 };
 
