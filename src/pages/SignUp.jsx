@@ -1,4 +1,5 @@
-import { MenuItem, TextField } from "@mui/material";
+import { PhotoCamera } from "@mui/icons-material";
+import { Button, IconButton, MenuItem, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -48,51 +49,6 @@ const SignUp = () => {
   };
   return (
     <div>
-      {/* <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          required="required"
-          autoComplete="name"
-          value={formData.username}
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              username: event.target.value,
-            })
-          }
-        /> */}
-      {/* <label>Email</label>
-        <input
-          type="text"
-          name="email"
-          id="email"
-          autoComplete="email"
-          required="required"
-          value={formData.email}
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              email: event.target.value,
-            })
-          }
-        /> */}
-      {/* <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          id="password"
-          required="required"
-          autoComplete="current-password"
-          value={formData.password}
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              password: event.target.value,
-            })
-          }
-        /> */}
       <form className="formClass" onSubmit={handleSubmit}>
         <TextField
           fullWidth
@@ -140,24 +96,6 @@ const SignUp = () => {
             })
           }
         />
-
-        {/* <label>level</label>
-        <select
-          onChange={(event) =>
-            setFormData({
-              ...formData,
-              level: event.target.value,
-            })
-          }
-          id="level"
-          name="level"
-        >
-          <option value="Beginner">Beginner</option>
-          <option value="Medium">Medium</option>
-          <option value="Advanced">Advanced</option>
-          <option value="Expert">Expert</option>
-        </select> */}
-
         <TextField
           id="level"
           select
@@ -180,7 +118,7 @@ const SignUp = () => {
           ))}
         </TextField>
 
-        <label>Profile Picture</label>
+        {/* <label>Profile Picture</label>
         <input
           type="file"
           id="profilePic"
@@ -193,8 +131,37 @@ const SignUp = () => {
               profilePic: event.target.files[0],
             })
           }
-        ></input>
-        <input type="submit" value="S'inscrire" />
+        ></input> */}
+
+        <Button variant="contained" component="label">
+          Upload Image
+          <input
+            id="profilePic"
+            name="profilePic"
+            hidden
+            accept="image/*"
+            type="file"
+            value={null}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                profilePic: event.target.files[0],
+              })
+            }
+          />
+        </Button>
+        <IconButton
+          color="primary"
+          aria-label="upload picture"
+          component="label"
+        >
+          <input hidden accept="image/*" type="file" />
+        </IconButton>
+
+        <Button type="submit" variant="contained" color="success">
+          Sign up
+          {/* <input hidden type="submit" value="S'inscrire" /> */}
+        </Button>
       </form>
       {errors && <h3>{errors.response.data.message}</h3>}
     </div>

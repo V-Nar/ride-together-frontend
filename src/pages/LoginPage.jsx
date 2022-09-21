@@ -1,3 +1,4 @@
+import { TextField } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -35,9 +36,9 @@ const LoginPage = () => {
   };
 
   return (
-    <div style={{marginTop:'4.5rem'}}>
-      <form onSubmit={handleSubmit}>
-        <label>username</label>
+    <div>
+      <form className="formClass" onSubmit={handleSubmit}>
+        {/* <label>username</label>
         <input
           type="text"
           name="username"
@@ -50,8 +51,39 @@ const LoginPage = () => {
               username: event.target.value,
             })
           }
+        /> */}
+        <TextField
+          fullWidth
+          required
+          id="username"
+          label="Username"
+          variant="outlined"
+          margin="normal"
+          value={formData.username}
+          onChange={(event) =>
+            setFormData({
+              ...formData,
+              username: event.target.value,
+            })
+          }
         />
-        <label>password</label>
+        <TextField
+          fullWidth
+          required
+          id="password"
+          label="password"
+          variant="outlined"
+          type="password"
+          margin="normal"
+          value={formData.password}
+          onChange={(event) =>
+            setFormData({
+              ...formData,
+              password: event.target.value,
+            })
+          }
+        />
+        {/* <label>password</label>
         <input
           type="password"
           name="password"
@@ -64,7 +96,7 @@ const LoginPage = () => {
               password: event.target.value,
             })
           }
-        />
+        /> */}
         <input type="submit" value="Se connecter" />
       </form>
       {errors && <h3 className="error"> {"Wrong username or password"} </h3>}
