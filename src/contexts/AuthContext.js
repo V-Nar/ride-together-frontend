@@ -12,39 +12,35 @@ const AuthContextWrapper = ({ children }) => {
   const [user, setUser] = useState(null);
 
   const checkLogin = (token) => {
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-      setUser(null)
-    }
+    axios
+      .get("https://ride-together.herokuapp.com/api/auth/me", {
+        headers: {
+          authorization: "Bearer " + token,
+        },
+        withCredentials: true,
+      })
+      .then((res) => {
+        setUser(res.data.user);
+        setIsLoggedIn(true);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsLoggedIn(false);
+        setUser(null);
+        setIsLoading(false);
+      });
   };
 
   // on initial render, check for existing token
   useEffect(() => {
     const existingToken = localStorage.getItem("AUTH_TOKEN");
     setToken(existingToken);
-    checkLogin(existingToken);
-    setIsLoading(false);
   }, []);
+
   useEffect(() => {
     if (token) {
-      axios
-        .get("https://ride-together.herokuapp.com/api/auth/me", {
-          headers: {
-            authorization: "Bearer " + token,
-          },
-          withCredentials: true,
-        })
-        .then((res) => {
-          setUser(res.data.user);
-          setIsLoggedIn(true);
-        })
-        .catch((error) => {
-          console.log(error);
-          setIsLoggedIn(false)
-          setUser(null)
-        });
+      checkLogin(token);
     }
   }, [token]);
 
@@ -57,7 +53,9 @@ const AuthContextWrapper = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("AUTH_TOKEN");
     setToken("");
-    checkLogin()
+    setIsLoggedIn(false)
+    setUser(null)
+    setIsLoading(false)
   };
 
   return (
