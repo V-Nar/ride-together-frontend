@@ -9,11 +9,10 @@ const EventList = () => {
   
   useEffect(() => {
     axios
-      .get("http://localhost:5005/api/event", {
+      .get("https://ride-together.herokuapp.com/api/event", {
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
         setEvents(response.data.cityEvents);
       })
       .catch((error) => {
@@ -26,9 +25,9 @@ const EventList = () => {
     }
     
     const upcomingEvents = events.filter(event => event.isFinished === false)
-    // console.log(upcomingEvents);
+
     const pastEvents = events.filter(event => event.isFinished === true)
-    // console.log(pastEvents)
+   
 
   return (
     <div style={{ marginTop: "4.5rem" }}>
