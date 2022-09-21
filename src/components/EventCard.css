@@ -1,9 +1,9 @@
 .EventCard {
-    border: 2px solid black;
-    border-radius: 10px;
-    margin: 0.5rem
+  border: 2px solid black;
+  border-radius: 10px;
+  margin: 0.5rem;
 }
 
 .EventCard p {
-    color: red
+  color: red;
 }

@@ -1,7 +1,9 @@
+import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import SendIcon from "@mui/icons-material/Send";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -35,14 +37,15 @@ const LoginPage = () => {
   };
 
   return (
-    <div style={{marginTop:'4.5rem'}}>
-      <form onSubmit={handleSubmit}>
-        <label>username</label>
-        <input
-          type="text"
-          name="username"
+    <div>
+      <form className="formClass" onSubmit={handleSubmit}>
+        <TextField
+          fullWidth
+          required
           id="username"
-          autoComplete="name"
+          label="Username"
+          variant="outlined"
+          margin="normal"
           value={formData.username}
           onChange={(event) =>
             setFormData({
@@ -51,12 +54,14 @@ const LoginPage = () => {
             })
           }
         />
-        <label>password</label>
-        <input
-          type="password"
-          name="password"
+        <TextField
+          fullWidth
+          required
           id="password"
-          autoComplete="current-password"
+          label="password"
+          variant="outlined"
+          type="password"
+          margin="normal"
           value={formData.password}
           onChange={(event) =>
             setFormData({
@@ -65,7 +70,9 @@ const LoginPage = () => {
             })
           }
         />
-        <input type="submit" value="Se connecter" />
+        <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+          Log in
+        </Button>
       </form>
       {errors && <h3 className="error"> {"Wrong username or password"} </h3>}
     </div>

@@ -1,7 +1,8 @@
-import { CircularProgress } from "@mui/material";
+import { Button, CircularProgress, MenuItem, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import SendIcon from "@mui/icons-material/Send";
 
 const ProfilePage = () => {
   const { user, isLoading, setUser } = useContext(AuthContext);
@@ -11,8 +12,35 @@ const ProfilePage = () => {
     setEdit(true);
   };
 
+  const handleClickEdit = () => {
+    setEdit(false);
+    setFormData({
+      password: "",
+      level: "",
+      email: "",
+    });
+  };
+
+  const level = [
+    {
+      value: "Beginner",
+      label: "Beginner",
+    },
+    {
+      value: "Medium",
+      label: "Medium",
+    },
+    {
+      value: "Advanced",
+      label: "Advanced",
+    },
+    {
+      value: "Expert",
+      label: "Expert",
+    },
+  ];
   const [formData, setFormData] = useState({
-    profilePicture: "",
+    profilePic: "",
     password: "",
     email: "",
     level: "",
@@ -33,11 +61,16 @@ const ProfilePage = () => {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    const form = new FormData();
+    console.log("he", formData);
+    Object.entries(formData).forEach(([key, value]) => {
+      form.append(key, value);
+    });
+    console.log("hello", form);
     axios
-      .patch("https://ride-together.herokuapp.com/api/user", formData, config)
+      .patch("https://ride-together.herokuapp.com/api/user", form, config)
       .then((response) => {
         setEdit(false);
-        console.log(response.data);
         setUser(response.data);
         setFormData({
           password: "",
@@ -54,75 +87,103 @@ const ProfilePage = () => {
     <div style={{ marginTop: "4.5rem" }}>
       {!edit ? (
         <div>
-          <img src={`${user?.image}`} alt="user profile picture" />
+          <img
+            style={{ height: "250px" }}
+            src={`${user?.profilePic}`}
+            alt="user profile picture"
+          />
           <h3>Username: {user.username}</h3>
           <h3>Email : {user.email}</h3>
           <h3>level : {user.level}</h3>
-          <button onClick={handleClick}>Modification</button>
+          <Button
+            onClick={handleClick}
+            variant="contained"
+            endIcon={<SendIcon />}
+          >
+            Edit profile
+          </Button>
         </div>
       ) : (
-        <form className="formClass" onSubmit={handleSubmit}>
-          <label>Profil Picture</label>
-          <input
-            type="file"
-            id="profilePicture"
-            name="profilePicture"
-            accept="image/png, image/jpeg"
-            value={formData.image}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                profilePicture: event.target.value,
-              })
-            }
-          ></input>
-          <label>password</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            autoComplete="current-password"
-            value={formData.password}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                password: event.target.value,
-              })
-            }
-          />
-          <label>email</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={formData.email}
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                email: event.target.value,
-              })
-            }
-          />
-          <label>level</label>
-          <select
-            onChange={(event) =>
-              setFormData({
-                ...formData,
-                level: event.target.value,
-              })
-            }
-            id="level"
-            name="level"
-          >
-            <option value="Beginner">Beginner</option>
-            <option value="Medium">Medium</option>
-            <option value="Advanced">Advanced</option>
-            <option value="Expert">Expert</option>
-          </select>
+        <>
+          <form className="formClass" onSubmit={handleSubmit}>
+            <Button variant="contained" component="label">
+              Upload Image
+              <input
+                id="profilePic"
+                name="profilePic"
+                hidden
+                accept="image/*"
+                type="file"
+                value={null}
+                onChange={(event) =>
+                  setFormData({
+                    ...formData,
+                    profilePic: event.target.files[0],
+                  })
+                }
+              />
+            </Button>
+            <TextField
+              fullWidth
+              required
+              id="password"
+              label="password"
+              variant="outlined"
+              type="password"
+              margin="normal"
+              value={formData.password}
+              onChange={(event) =>
+                setFormData({
+                  ...formData,
+                  password: event.target.value,
+                })
+              }
+            />
+            <TextField
+              fullWidth
+              required
+              id="email"
+              label="email"
+              variant="outlined"
+              margin="normal"
+              value={formData.email}
+              onChange={(event) =>
+                setFormData({
+                  ...formData,
+                  email: event.target.value,
+                })
+              }
+            />
+            <TextField
+              id="level"
+              select
+              label="Level"
+              fullWidth
+              margin="normal"
+              value={level.value}
+              onChange={(event) =>
+                setFormData({
+                  ...formData,
+                  level: event.target.value,
+                })
+              }
+              helperText="Please select the level you think you are !"
+            >
+              {level.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+              Accept modification
+            </Button>
+            <Button variant="contained" onClick={handleClickEdit}>
+              Cancel
+            </Button>
+          </form>
           {/* Need to put it to the right place  */}
-          {/* <button onClick={setEdit(false)}>Cancel</button> */}
-          <input type="submit" value="Enregistrer les modifications" />
-        </form>
+        </>
       )}
     </div>
   );
