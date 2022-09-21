@@ -159,7 +159,7 @@ const SignUp = () => {
         </select> */}
 
         <TextField
-          id="outlined-select-currency"
+          id="level"
           select
           label="Level"
           fullWidth
