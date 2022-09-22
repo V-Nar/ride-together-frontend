@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import React from "react";
 
-const JoinEvent = ({ id }) => {
+const JoinEvent = ({ id, setAttendees }) => {
   const handleClick = () => {
     const config = {
       withCredentials: true,
@@ -14,7 +14,12 @@ const JoinEvent = ({ id }) => {
       url: `/event/attend/${id}`,
     };
     axios(config)
-      .then(console.log("event joined"))
+      .then((res) => {
+        setAttendees((prev) => {
+          return [...prev, res.data];
+        });
+        console.log(res.data);
+      })
       .catch((error) => {
         console.log(error);
       });

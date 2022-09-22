@@ -9,14 +9,17 @@ import LeaveEvent from "../components/LeaveEvent";
 
 const Event = () => {
   const { id } = useParams();
+  const { user } = useContext(AuthContext);
   const [events, setEvents] = useState([]);
   const [attendees, setAttendees] = useState([]);
+  console.log(attendees);
   // const { token } = useContext(AuthContext);
 
   const config = {
     headers: { Authorization: "Bearer " + localStorage.getItem("AUTH_TOKEN") },
   };
 
+  const handleJoin = () => {};
   useEffect(() => {
     axios
       .get(`https://ride-together.herokuapp.com/api/event/${id}`, config)
@@ -29,11 +32,11 @@ const Event = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [id]);
-  if (!attendees.length) {
-    return <p>Loading ...</p>;
-  }
-  console.log("hello", attendees);
+  }, []);
+  // if (!attendees.length) {
+  //   return <p>Loading ...</p>;
+  // }
+
   return (
     <>
       <h1>{events.title}</h1>
@@ -41,13 +44,21 @@ const Event = () => {
         {formatAs.date(events.date)} {formatAs.time(events.date)}
       </p>
       <p>
+        Location : {events.city} {events.adress}
+      </p>
+      <p>Promoter: {events.promoter}</p>
+      <p>{events.isFinished}</p>
+      <p>
         List of attendees:
         {attendees.map((x) => {
           return ` ${x.user.username} `;
         })}
       </p>
-      <JoinEvent id={id} />
-      <LeaveEvent id={id} />
+      {!attendees.some((e) => e.user.username === user.username) ? (
+        <JoinEvent onClick={handleJoin} id={id} setAttendees={setAttendees} />
+      ) : (
+        <LeaveEvent id={id} setAttendees={setAttendees} />
+      )}
     </>
   );
 };

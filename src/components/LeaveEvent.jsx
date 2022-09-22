@@ -1,8 +1,10 @@
 import { Button } from "@mui/material";
 import axios from "axios";
-import React from "react";
+import React, { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
-const LeaveEvent = ({ id }) => {
+const LeaveEvent = ({ id, setAttendees }) => {
+  const { user } = useContext(AuthContext);
   const handleClick = () => {
     const config = {
       withCredentials: true,
@@ -15,7 +17,14 @@ const LeaveEvent = ({ id }) => {
     };
 
     axios(config)
-      .then(console.log("event left"))
+      .then((res) => {
+        setAttendees((prev) => {
+          console.log(prev);
+          return prev.filter((attendee) => {
+            return attendee.user.username !== user.username;
+          });
+        });
+      })
       .catch((error) => {
         console.log(error);
       });
