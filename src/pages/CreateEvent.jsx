@@ -21,7 +21,7 @@ const CreateEvent = () => {
   }
 
   const config = {
-    headers: { Authorization: "Bearer " + localStorage.getItem(token) },
+    headers: { Authorization: "Bearer " + localStorage.getItem("AUTH_TOKEN") },
   };
 
   const handleSubmit = (e) => {
