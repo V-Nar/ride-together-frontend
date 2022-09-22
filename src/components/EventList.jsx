@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import EventCard from "./EventCard";
 
 const EventList = ({ eventsList }) => {
@@ -5,7 +6,9 @@ const EventList = ({ eventsList }) => {
     <>
       {eventsList.map((event) => (
         <div key={event._id}>
-          <EventCard event={event}></EventCard>
+          <Link to={`/events/${event._id}`} style={{ textDecoration: "none" }}>
+            <EventCard event={event}></EventCard>
+          </Link>
         </div>
       ))}
     </>
