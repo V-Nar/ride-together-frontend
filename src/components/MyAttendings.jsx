@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import EventList from "./EventList";
 
 const MyAttendings = () => {
@@ -7,19 +7,26 @@ const MyAttendings = () => {
 
   useEffect(() => {
     axios
-      .get("https://ride-together.herokuapp.com/user/joined", {
+      .get("https://ride-together.herokuapp.com/api/user/joined", {
         withCredentials: true,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("AUTH_TOKEN"),
+        },
       })
       .then((response) => {
         console.log(response.data);
-        setEvents(response.data);
+        setEvents(
+          response.data.myJoinedEvents
+            .filter((x) => x.event)
+            .map((x) => x.event)
+        );
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
 
-  if (!events.length) {
+  if (!events || !events.length) {
     return <div className="loading">Loading...</div>;
   }
   return (
