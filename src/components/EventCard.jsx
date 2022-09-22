@@ -44,7 +44,11 @@ const EventCard = (props) => {
     // );
 
     <>
-      <Link className="cardLink" to="/event" style={{ textDecoration: "none" }}>
+      <Link
+        className="cardLink"
+        to={`/events/${props.event._id}`}
+        style={{ textDecoration: "none" }}
+      >
         <div className="EventCard">
           <h1>{props.event.title}</h1>
           <p>{formatAs.date(props.event.date)}</p>
