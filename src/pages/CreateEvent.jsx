@@ -6,12 +6,11 @@ import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
 
 const CreateEvent = () => {
-  const { isLoggedIn, isLoading, token} = useContext(AuthContext);
+  const { isLoggedIn, isLoading, token } = useContext(AuthContext);
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState();
 
   const navigate = useNavigate();
-
 
   if (isLoading) {
     return <p>Loading!</p>;
@@ -28,9 +27,7 @@ const CreateEvent = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://ride-together.herokuapp.com/api/event/",
-            formData,
-            config)
+      .post("https://ride-together.herokuapp.com/api/event/", formData, config)
       .then((response) => {
         navigate("/profile");
       })
@@ -42,78 +39,78 @@ const CreateEvent = () => {
 
   return (
     <>
-        <form onSubmit={handleSubmit} className="formClass">
+      <form onSubmit={handleSubmit} className="formClass">
         <TextField
-            label="Title"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            type="text"
-            id="title"
-            required
-            value={formData.title}
-            onChange={(e) =>
+          label="Title"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          type="text"
+          id="title"
+          required
+          value={formData.title}
+          onChange={(e) =>
             setFormData({
-                ...formData,
-                title: e.target.value,
+              ...formData,
+              title: e.target.value,
             })
-            }
+          }
         />
         <TextField
-            InputLabelProps={{ shrink: true }}
-            label="Date"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            type="datetime-local"
-            id="date"
-            InputProps={{inputProps:{min: Date()}}}
-            required
-            value={formData.date}
-            onChange={(e) =>
+          InputLabelProps={{ shrink: true }}
+          label="Date"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          type="datetime-local"
+          id="date"
+          InputProps={{ inputProps: { min: Date() } }}
+          required
+          value={formData.date}
+          onChange={(e) =>
             setFormData({
-                ...formData,
-                date: e.target.value,
+              ...formData,
+              date: e.target.value,
             })
-            }
+          }
         />
         <TextField
-            label="Address"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            type="text" 
-            id="address"
-            required
-            value={formData.address}
-            onChange={(e) =>
+          label="Address"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          type="text"
+          id="address"
+          required
+          value={formData.address}
+          onChange={(e) =>
             setFormData({
-                ...formData,
-                address: e.target.value,
+              ...formData,
+              address: e.target.value,
             })
-            }
+          }
         />
         <TextField
-            label="City"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            type="text"
-            id="city"
-            required
-            value={formData.city}
-            onChange={(e) =>
+          label="City"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          type="text"
+          id="city"
+          required
+          value={formData.city}
+          onChange={(e) =>
             setFormData({
-                ...formData,
-                city: e.target.value,
+              ...formData,
+              city: e.target.value,
             })
-            }
+          }
         />
         <Button type="submit" variant="contained" endIcon={<SendIcon />}>
-          Log in
+          Create event
         </Button>
-        </form>
-        {errors && <h3>{errors.response.data.message}</h3>}
+      </form>
+      {errors && <h3>{errors.response.data.message}</h3>}
     </>
   );
 };

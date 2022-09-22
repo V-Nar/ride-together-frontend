@@ -42,15 +42,21 @@ const EventCard = (props) => {
     //     </CardActions>
     //   </Card>
     // );
-
-    <Link to="/event" style={{ textDecoration: "none" }}>
-      <div className="EventCard">
-        <p>{props.event.title}</p>
-        <p>{formatAs.date(props.event.date)}</p>
-        <p>City: {props.event.city}</p>
-        <p>Attendees: {props.event.numOfAttendees}</p>
-      </div>
-    </Link>
+    <>
+      <Link className="cardLink" to="/event" style={{ textDecoration: "none" }}>
+        <div className="EventCard">
+          <h1>{props.event.title}</h1>
+          <p>{formatAs.date(props.event.date)}</p>
+          <p>
+            <span className="field">City:</span> {props.event.city}
+          </p>
+          <p>
+            <span className="field">Attendees:</span>{" "}
+            {props.event.numOfAttendees}
+          </p>
+        </div>
+      </Link>
+    </>
   );
 };
 
