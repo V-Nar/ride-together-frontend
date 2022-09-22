@@ -18,7 +18,6 @@ const JoinEvent = ({ id, setAttendees }) => {
         setAttendees((prev) => {
           return [...prev, res.data];
         });
-        console.log(res.data);
       })
       .catch((error) => {
         console.log(error);
