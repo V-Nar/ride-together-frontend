@@ -8,9 +8,8 @@ import Button from "@mui/material/Button";
 import { AuthContext } from "../contexts/AuthContext";
 
 const ProfileIcon = () => {
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn, logout, user, isLoading } = useContext(AuthContext);
   const [anchorEl, setAnchorEl] = useState(null);
-
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -18,6 +17,7 @@ const ProfileIcon = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  console.log(user);
   return (
     <div>
       {!isLoggedIn ? (
@@ -55,7 +55,10 @@ const ProfileIcon = () => {
             open={Boolean(anchorEl)}
             onClose={handleClose}
           >
-            <Link to="/profile" style={{ textDecoration: "none" }}>
+            <Link
+              to={`/profile/${user._id}`}
+              style={{ textDecoration: "none" }}
+            >
               <MenuItem onClick={handleClose}>Profile</MenuItem>
             </Link>
             <Link to="/new" style={{ textDecoration: "none" }}>

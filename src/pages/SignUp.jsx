@@ -104,6 +104,7 @@ const SignUp = () => {
           label="Level"
           fullWidth
           margin="normal"
+          defaultValue={"Beginner"}
           value={level.value}
           onChange={(event) =>
             setFormData({
