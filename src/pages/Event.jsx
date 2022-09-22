@@ -5,6 +5,7 @@ import { formatAs } from "../utils/formatDate";
 import EventCard from "../components/EventCard";
 import { AuthContext } from "../contexts/AuthContext";
 import JoinEvent from "../components/JoinEvent";
+import LeaveEvent from "../components/LeaveEvent";
 
 const Event = () => {
   const { id } = useParams();
@@ -46,7 +47,7 @@ const Event = () => {
         })}
       </p>
       <JoinEvent id={id} />
-      {/* <LeaveEvent id={id} /> */}
+      <LeaveEvent id={id} />
     </>
   );
 };
