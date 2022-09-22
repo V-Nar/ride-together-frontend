@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
 import MyEvents from "../components/MyEvents";
-import MyAttending from "../components/MyAttending";
+import MyAttendings from "../components/MyAttendings";
 
 const ProfilePage = () => {
   const { user, isLoading, setUser } = useContext(AuthContext);
@@ -116,7 +116,7 @@ const ProfilePage = () => {
             </div>
           </div>
           <MyEvents />
-          <MyAttending />
+          <MyAttendings />
         </div>
       ) : (
         <div>

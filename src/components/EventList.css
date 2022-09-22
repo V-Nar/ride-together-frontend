@@ -1,7 +1,7 @@
 .EventList {
     justify-content: left;
     display: flex;
-    
+    padding: 0 1rem;
     gap: 1rem;
-    flex-wrap: wrap;
+    overflow-x: scroll;
 }
