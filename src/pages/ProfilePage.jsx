@@ -64,7 +64,7 @@ const ProfilePage = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = new FormData();
-    console.log("he", formData);
+    console.log(formData);
     Object.entries(formData).forEach(([key, value]) => {
       form.append(key, value);
     });

@@ -42,6 +42,7 @@ const EventCard = (props) => {
     //     </CardActions>
     //   </Card>
     // );
+
     <>
       <Link className="cardLink" to="/event" style={{ textDecoration: "none" }}>
         <div className="EventCard">
