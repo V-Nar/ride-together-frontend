@@ -19,7 +19,6 @@ const LeaveEvent = ({ id, setAttendees }) => {
     axios(config)
       .then((res) => {
         setAttendees((prev) => {
-          console.log(prev);
           return prev.filter((attendee) => {
             return attendee.user.username !== user.username;
           });
