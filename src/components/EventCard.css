@@ -1,9 +1,36 @@
 .EventCard {
+  background-color: rgba(106, 167, 210, 0.589);
+  width: 16rem;
+  height: 12rem;
   border: 2px solid black;
   border-radius: 10px;
   margin: 0.5rem;
 }
 
-.EventCard p {
-  color: red;
+.cardLink {
+  position: relative;
+  width: 30vw;
+}
+
+.cardLink h1 {
+  color:white;
+  background-color: rgb(65, 119, 212);
+  margin-top: 0;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+
+}
+
+.cardLink:visited {
+  color: black;
+}
+
+.cardLink:hover h1 {
+  font-size: 1.6rem;
+}
+
+.field {
+  font-weight: bolder;
 }

@@ -1,14 +1,13 @@
 import EventCard from "./EventCard";
+import "./EventList.css";
 
 const EventList = ({ eventsList }) => {
   return (
-    <>
+    <section className="EventList">
       {eventsList.map((event) => (
-        <div key={event._id}>
-          <EventCard event={event}></EventCard>
-        </div>
+        <EventCard key={event._id} event={event}></EventCard>
       ))}
-    </>
+    </section>
   );
 };
 
