@@ -1,17 +1,16 @@
 import { Link } from "react-router-dom";
 import EventCard from "./EventCard";
+import "./EventList.css";
 
 const EventList = ({ eventsList }) => {
   return (
-    <>
+    <section className="EventList">
       {eventsList.map((event) => (
-        <div key={event._id}>
-          <Link to={`/events/${event._id}`} style={{ textDecoration: "none" }}>
-            <EventCard event={event}></EventCard>
-          </Link>
-        </div>
+
+        <EventCard key={event._id} event={event}></EventCard>
+
       ))}
-    </>
+    </section>
   );
 };
 

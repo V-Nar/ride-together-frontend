@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
+import MyEvents from "../components/MyEvents";
+import MyAttending from "../components/MyAttending";
 
 const ProfilePage = () => {
   const { user, isLoading, setUser } = useContext(AuthContext);
@@ -84,27 +86,40 @@ const ProfilePage = () => {
       });
   };
   return (
-    <div style={{ marginTop: "4.5rem" }}>
+    <>
       {!edit ? (
         <div>
-          <img
-            style={{ height: "250px" }}
-            src={`${user?.profilePic}`}
-            alt="user profile picture"
-          />
-          <h3>Username: {user.username}</h3>
-          <h3>Email : {user.email}</h3>
-          <h3>level : {user.level}</h3>
-          <Button
-            onClick={handleClick}
-            variant="contained"
-            endIcon={<SendIcon />}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "2rem",
+            }}
           >
-            Edit profile
-          </Button>
+            <img
+              style={{ height: "9rem" }}
+              src={`${user?.profilePic}`}
+              alt="profile pic"
+            />
+            <div style={{ textAlign: "left" }}>
+              <h3>Username: {user.username}</h3>
+              <h3>Email : {user.email}</h3>
+              <h3>level : {user.level}</h3>
+              <Button
+                onClick={handleClick}
+                variant="contained"
+                endIcon={<SendIcon />}
+              >
+                Edit profile
+              </Button>
+            </div>
+          </div>
+          <MyEvents />
+          <MyAttending />
         </div>
       ) : (
-        <>
+        <div>
           <form className="formClass" onSubmit={handleSubmit}>
             <Button variant="contained" component="label">
               Upload Image
@@ -183,9 +198,9 @@ const ProfilePage = () => {
             </Button>
           </form>
           {/* Need to put it to the right place  */}
-        </>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
