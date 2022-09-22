@@ -5,6 +5,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
 import MyEvents from "../components/MyEvents";
 import MyAttendings from "../components/MyAttendings";
+import DeleteProfile from "../components/DeleteProfile";
 
 const ProfilePage = () => {
   const { user, isLoading, setUser } = useContext(AuthContext);
@@ -113,6 +114,7 @@ const ProfilePage = () => {
               >
                 Edit profile
               </Button>
+              <DeleteProfile>Delete profile</DeleteProfile>
             </div>
           </div>
           <MyEvents />
