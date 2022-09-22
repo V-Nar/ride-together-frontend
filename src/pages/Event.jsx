@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { formatAs } from "../utils/formatDate";
-import EventCard from "../components/EventCard";
 import { AuthContext } from "../contexts/AuthContext";
 import JoinEvent from "../components/JoinEvent";
 import LeaveEvent from "../components/LeaveEvent";
