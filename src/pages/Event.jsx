@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { formatAs } from "../utils/formatDate";
 import EventCard from "../components/EventCard";
 import { AuthContext } from "../contexts/AuthContext";
+import JoinEvent from "../components/JoinEvent";
 
 const Event = () => {
   const { id } = useParams();
@@ -39,11 +40,13 @@ const Event = () => {
         {formatAs.date(events.date)} {formatAs.time(events.date)}
       </p>
       <p>
-        {/* Liste of attendees :{attendees[0].user.username} */}
+        List of attendees:
         {attendees.map((x) => {
-          <p>{x.user.username}</p>;
+          return ` ${x.user.username} `;
         })}
       </p>
+      <JoinEvent id={id} />
+      {/* <LeaveEvent id={id} /> */}
     </>
   );
 };
