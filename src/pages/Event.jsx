@@ -43,7 +43,7 @@ const Event = () => {
   }
 
   return (
-    <>
+    <div>
       <h1>{events.title}</h1>
       <p>
         {formatAs.date(events.date)} {formatAs.time(events.date)}
@@ -64,7 +64,7 @@ const Event = () => {
       ) : (
         <LeaveEvent id={id} setAttendees={setAttendees} />
       )}
-    </>
+    </div>
   );
 };
 
