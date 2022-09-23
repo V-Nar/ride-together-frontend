@@ -5,7 +5,7 @@ import { AuthContext } from "../../contexts/AuthContext";
 const IsLoggedOut = ({ children }) => {
   const { isLoggedIn } = useContext(AuthContext);
 
-  // for some pages, we only want to see them when we're NOT logged in
+  // When we don't want to be logged in to see this
   if (isLoggedIn) {
     return <Navigate to="/" />;
   }

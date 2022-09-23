@@ -6,9 +6,10 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const DeleteProfile = () => {
   const { id } = useParams();
-  const { user, checkLogin } = useContext(AuthContext);
+  const { checkLogin } = useContext(AuthContext);
 
   const handleClickDelete = () => {
+    //Delete the user corresponding to the userID in url
     const config = {
       withCredentials: true,
       headers: {

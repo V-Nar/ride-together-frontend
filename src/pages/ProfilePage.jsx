@@ -14,6 +14,12 @@ const ProfilePage = () => {
   const handleClick = () => {
     setEdit(true);
   };
+  const [formData, setFormData] = useState({
+    profilePic: "",
+    password: "",
+    email: "",
+    level: "",
+  });
 
   const handleClickEdit = () => {
     setEdit(false);
@@ -42,12 +48,6 @@ const ProfilePage = () => {
       label: "Expert",
     },
   ];
-  const [formData, setFormData] = useState({
-    profilePic: "",
-    password: "",
-    email: "",
-    level: "",
-  });
 
   useEffect(() => {
     if (edit) {
