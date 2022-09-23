@@ -4,24 +4,20 @@
   height: 12rem;
   border: 2px solid black;
   border-radius: 10px;
-
 }
 
 .cardLink {
-
   position: relative;
-
 }
 
 .cardLink h1 {
-  color:white;
+  color: white;
   background-color: rgb(65, 119, 212);
   margin-top: 0;
   padding-top: 0.2rem;
   padding-bottom: 0.2rem;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
-
 }
 
 .cardLink:visited {

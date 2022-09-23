@@ -1,7 +1,7 @@
 import { Button, TextField } from "@mui/material";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
 
@@ -74,6 +74,10 @@ const LoginPage = () => {
           Log in
         </Button>
       </form>
+      <p>
+        No account ? <Link to="/signup">Sign up !</Link>
+      </p>
+
       {errors && <h3 className="error"> {"Wrong username or password"} </h3>}
     </div>
   );

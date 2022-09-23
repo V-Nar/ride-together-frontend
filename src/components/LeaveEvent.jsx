@@ -30,7 +30,11 @@ const LeaveEvent = ({ id, setAttendees }) => {
   };
 
   return (
-    <Button variant="contained" onClick={handleClick}>
+    <Button
+      style={{ marginTop: "2rem" }}
+      variant="contained"
+      onClick={handleClick}
+    >
       Leave event
     </Button>
   );
