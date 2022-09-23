@@ -5,6 +5,7 @@ import EventList from "./EventList";
 const MyAttendings = () => {
   const [events, setEvents] = useState([]);
 
+  // get infos from the attendies collection
   useEffect(() => {
     axios
       .get("https://ride-together.herokuapp.com/api/user/joined", {
@@ -13,6 +14,7 @@ const MyAttendings = () => {
           Authorization: "Bearer " + localStorage.getItem("AUTH_TOKEN"),
         },
       })
+      // filtering existing events and return them as an usable array
       .then((response) => {
         setEvents(
           response.data.myJoinedEvents
@@ -25,6 +27,7 @@ const MyAttendings = () => {
       });
   }, []);
 
+  // check response return
   if (!events || !events.length) {
     return <div className="loading">Loading...</div>;
   }

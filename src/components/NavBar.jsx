@@ -7,6 +7,7 @@ import AppBar from "@mui/material/AppBar";
 import ProfileIcon from "./ProfileIcon";
 import { Link } from "react-router-dom";
 
+// gathering all navbar components to a global rendering
 const NavBar = () => {
   return (
     <AppBar>

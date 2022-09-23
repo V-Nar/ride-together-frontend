@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
 
 const CreateEvent = () => {
-  const { isLoggedIn, isLoading, token, user } = useContext(AuthContext);
+  const { isLoggedIn, isLoading, user } = useContext(AuthContext);
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState();
 
@@ -16,6 +16,7 @@ const CreateEvent = () => {
     return <p>Loading!</p>;
   }
 
+  // check access authorization
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }
@@ -24,6 +25,7 @@ const CreateEvent = () => {
     headers: { Authorization: "Bearer " + localStorage.getItem("AUTH_TOKEN") },
   };
 
+  // sending form datas to the backend and rediretion the user after validation
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
