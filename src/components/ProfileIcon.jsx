@@ -20,6 +20,7 @@ const ProfileIcon = () => {
   console.log(user);
   return (
     <div>
+      {/* conditionning the render to loggin status */}
       {!isLoggedIn ? (
         <div>
           <Link to="/login">

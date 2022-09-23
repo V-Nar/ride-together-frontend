@@ -7,6 +7,7 @@ const MyEvents = () => {
   const [events, setEvents] = useState([]);
   const { user } = useContext(AuthContext);
 
+  // getting all available event
   useEffect(() => {
     axios
       .get("https://ride-together.herokuapp.com/api/event", {
@@ -20,10 +21,12 @@ const MyEvents = () => {
       });
   }, []);
 
+  // checking data response before rendering
   if (!events.length) {
     return <div className="loading">Loading...</div>;
   }
 
+  // filter promoted events
   const myEvents = events.filter((event) => event.promoter === user._id);
 
   return (

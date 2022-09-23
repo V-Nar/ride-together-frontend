@@ -32,7 +32,7 @@ const HomePage = () => {
   }
   return (
     <>
-      <EventList eventsList={eventsList} />
+      <EventList eventsList={eventsList} style={{ overflowX: "none" }} />
     </>
   );
 };

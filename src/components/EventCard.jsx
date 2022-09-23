@@ -1,16 +1,18 @@
-import {
-  Button,
-  Card,
-  CardActionArea,
-  CardActions,
-  CardContent,
-  CardMedia,
-  Typography,
-} from "@mui/material";
+// import {
+//   Button,
+//   Card,
+//   CardActionArea,
+//   CardActions,
+//   CardContent,
+//   CardMedia,
+//   Typography,
+// } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import { formatAs } from "../utils/formatDate";
 import "./EventCard.css";
+
+// commented code to further applications with components library
 
 const EventCard = (props) => {
   return (
