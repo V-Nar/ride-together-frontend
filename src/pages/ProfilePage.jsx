@@ -108,6 +108,7 @@ const ProfilePage = () => {
               <h3>Email : {user.email}</h3>
               <h3>level : {user.level}</h3>
               <Button
+                style={{ marginRight: "1rem" }}
                 onClick={handleClick}
                 variant="contained"
                 endIcon={<SendIcon />}
@@ -192,7 +193,12 @@ const ProfilePage = () => {
                 </MenuItem>
               ))}
             </TextField>
-            <Button type="submit" variant="contained" endIcon={<SendIcon />}>
+            <Button
+              style={{ marginBottom: "1rem" }}
+              type="submit"
+              variant="contained"
+              endIcon={<SendIcon />}
+            >
               Accept modification
             </Button>
             <Button variant="contained" onClick={handleClickEdit}>

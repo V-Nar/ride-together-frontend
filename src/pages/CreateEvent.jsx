@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import SendIcon from "@mui/icons-material/Send";
 
 const CreateEvent = () => {
-  const { isLoggedIn, isLoading, token } = useContext(AuthContext);
+  const { isLoggedIn, isLoading, token, user } = useContext(AuthContext);
   const [formData, setFormData] = useState({});
   const [errors, setErrors] = useState();
 
@@ -29,7 +29,7 @@ const CreateEvent = () => {
     axios
       .post("https://ride-together.herokuapp.com/api/event/", formData, config)
       .then((response) => {
-        navigate("/profile");
+        navigate(`/profile/${user._id}`);
       })
       .catch((error) => {
         console.log(error);
