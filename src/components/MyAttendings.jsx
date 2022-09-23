@@ -14,7 +14,6 @@ const MyAttendings = () => {
         },
       })
       .then((response) => {
-        console.log(response.data);
         setEvents(
           response.data.myJoinedEvents
             .filter((x) => x.event)
