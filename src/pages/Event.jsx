@@ -28,6 +28,7 @@ const Event = () => {
       .then((response) => {
         setEvents(response.data.eventDetails);
         setAttendees(response.data.eventAttendees);
+        console.log(response.data.eventAttendees);
       })
       .catch((error) => {
         console.log(error);
