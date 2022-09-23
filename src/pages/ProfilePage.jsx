@@ -99,7 +99,7 @@ const ProfilePage = () => {
             }}
           >
             <img
-              style={{ height: "9rem" }}
+              style={{ height: "9rem", width: "9rem", borderRadius: "50%" }}
               src={`${user?.profilePic}`}
               alt="profile pic"
             />
